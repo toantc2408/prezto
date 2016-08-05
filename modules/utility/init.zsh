@@ -75,7 +75,7 @@ alias mv="${aliases[mv]:-mv} -i"
 alias p='${(z)PAGER}'
 alias po='popd'
 alias pu='pushd'
-alias rm="${aliases[rm]:-rm} -i"
+alias rm="${aliases[rm]:-rm}"
 alias sa='alias | grep -i'
 alias type='type -a'
 
@@ -168,12 +168,16 @@ fi
 
 alias du='du -kh'
 
-if [[ "$OSTYPE" == (darwin*|*bsd*) ]]; then
-  alias topc='top -o cpu'
-  alias topm='top -o vsize'
+if (( $+commands[htop] )); then
+  alias top=htop
 else
-  alias topc='top -o %CPU'
-  alias topm='top -o %MEM'
+  if [[ "$OSTYPE" == (darwin*|*bsd*) ]]; then
+    alias topc='top -o cpu'
+    alias topm='top -o vsize'
+  else
+    alias topc='top -o %CPU'
+    alias topm='top -o %MEM'
+  fi
 fi
 
 # Miscellaneous
