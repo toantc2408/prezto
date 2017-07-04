@@ -74,3 +74,9 @@ fi
 if [[ ! -d "${TMPDIR}" ]]; then
   mkdir -m 700 "${TMPDIR}"
 fi
+if [[ -d /home/toantc/projects/golang ]]; then
+	export GOPATH=/home/toantc/projects/golang
+	export PATH="$PATH:$GOPATH/bin"
+fi
+
+TMPPREFIX="${TMPDIR%/}/zsh"
